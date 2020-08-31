@@ -1,0 +1,28 @@
+﻿namespace ConsoleApp4.Migrations
+{
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<ConsoleApp4.DataContext>
+    {
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = false;
+        }
+
+        protected override void Seed(ConsoleApp4.DataContext context)
+        {
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
+            //  to avoid creating duplicate seed data.
+            context.Companies.AddOrUpdate(
+                c => c.CompanyName,
+                new Company { CompanyName = "comp1", Email = "o1@gmail.com" },
+                new Company { CompanyName = "comp2", Email = "o2@gmail.com" }
+                );
+        }
+    }
+}
